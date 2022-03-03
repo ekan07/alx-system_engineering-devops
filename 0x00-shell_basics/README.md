@@ -12,3 +12,6 @@
 8. 7-movethatfile file: Move the file betty from /tmp/ to /tmp/my_first_directory.
 9. 8-firstdelete file: Delete the file betty
 10. 9-firstdirdeletion file: Delete the directory my_first_directory that is in the /tmp directory
+11. A script that changes the working directory to the previous one.
+12. 11-lists file: A script that lists all files
+13. 12-file_type file: A script that prints the type of the file named iamafile
