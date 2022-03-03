@@ -15,3 +15,5 @@
 11. A script that changes the working directory to the previous one.
 12. 11-lists file: A script that lists all files
 13. 12-file_type file: A script that prints the type of the file named iamafile
+14. 13-symbolic_link file: Create a symbolic link to /bin/ls, named __ls__.
+15. 14-copy_html file: a script that copies all the HTML files from the current working directory to the parent of the working directory
