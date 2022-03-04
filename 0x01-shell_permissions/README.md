@@ -10,3 +10,4 @@
 9. 8-James_Bond file: A script that sets the permission to the file hello as follows.
 10. 9-John_Doe file: A script that sets the mode of the file hello to this:
    - -rwxr-x-wx 1 julien julien 23 Sep 20 14:25 hello
+11. 10-mirror_permissions file: A script that sets the mode of the file hello the same as olleh’s mode.
