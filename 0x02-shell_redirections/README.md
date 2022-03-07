@@ -29,3 +29,4 @@
 21. 19-AZ file: A script that replace all characters A and c from input to Z and e respectively.
 22. 20-hiago file: A script that removes all letters c and C from input.
 23. 21-reverse file: A script that reverse its input.
+24. 22-users_and_homes file: A script that displays all users and their home directories, sorted by users.
