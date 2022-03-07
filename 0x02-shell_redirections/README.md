@@ -16,4 +16,11 @@
 14. 12-newest_files file: A script that displays the 10 newest files in the current directory.
     - One file per line
     - Sorted from the newest to the oldest
+15. 13-unique file: A script that takes a list of words as input and prints only words that appear exactly once.
+    - Input format: One line, one word
+    - Output format: One line, one word
+    - Words should be sorted
+16. 14-findthatword file: A display lines containing the pattern “root” from the file /etc/passwd.
+17. 15-countthatword file: A script that display the number of lines that contain the pattern “bin” in the file /etc/passwd.
+18. 16-whatsnext file: A script that display lines containing the pattern “root” and 3 lines after them in the file /etc/passwd.
 
