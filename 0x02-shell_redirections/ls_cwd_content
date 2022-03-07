@@ -1,0 +1,16 @@
+total 56
+drwxr-xr-x 2 ekan07 ekan07 4096 Mar  7 18:55 .
+drwxr-xr-x 6 ekan07 ekan07 4096 Mar  7 15:13 ..
+-rwxr-xr-x 1 ekan07 ekan07   30 Mar  7 16:38 0-hello_world
+-rwxr--r-- 1 ekan07 ekan07   28 Mar  7 16:27 1-confused_smiley
+-rwxr--r-- 1 ekan07 ekan07   28 Mar  7 17:20 2-hellofile
+-rwxr--r-- 1 ekan07 ekan07   39 Mar  7 17:41 3-twofiles
+-rwxr--r-- 1 ekan07 ekan07   33 Mar  7 17:45 4-lastlines
+-rwxr--r-- 1 ekan07 ekan07   33 Mar  7 17:58 5-firstlines
+-rwxr--r-- 1 ekan07 ekan07   36 Mar  7 18:03 6-third_line
+-rwxr--r-- 1 ekan07 ekan07   99 Mar  7 18:51 7-file
+-rwxr--r-- 1 ekan07 ekan07   36 Mar  7 18:41 8-cwd_state
+-rw-r--r-- 1 ekan07 ekan07  990 Mar  7 18:42 README.md
+-rw-r--r-- 1 ekan07 ekan07   12 Mar  7 18:53 \*\\'"Best School"\'\\*$\?\*\*\*\*\*:)
+-rw-r--r-- 1 ekan07 ekan07  743 Mar  7 18:13 iacta
+-rw-r--r-- 1 ekan07 ekan07    0 Mar  7 18:55 ls_cwd_content
