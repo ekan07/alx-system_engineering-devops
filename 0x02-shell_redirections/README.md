@@ -23,4 +23,9 @@
 16. 14-findthatword file: A display lines containing the pattern “root” from the file /etc/passwd.
 17. 15-countthatword file: A script that display the number of lines that contain the pattern “bin” in the file /etc/passwd.
 18. 16-whatsnext file: A script that display lines containing the pattern “root” and 3 lines after them in the file /etc/passwd.
-
+19. 17-hidethisword file: A scrpt that display all the lines in the file /etc/passwd that do not contain the pattern “bin”.
+20. 18-letteronly file: a script that display all lines of the file /etc/ssh/sshd_config starting with a letter.
+    - include capital letters as well
+21. 19-AZ file: A script that replace all characters A and c from input to Z and e respectively.
+22. 20-hiago file: A script that removes all letters c and C from input.
+23. 21-reverse file: A script that reverse its input.
