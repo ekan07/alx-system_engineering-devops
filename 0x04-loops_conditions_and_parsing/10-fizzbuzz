@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# displays Holberton School 10 times.
+# displays numbers from 1 to 100.
 COUNTER=1
 while [ $COUNTER -lt 101 ]
 do
