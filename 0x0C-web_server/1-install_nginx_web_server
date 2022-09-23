@@ -4,9 +4,19 @@
 #   Returns a page containing "Hello World!" when queried
 #   at the root with a curl GET request.
 
-sudo apt-get update
-sudo apt-get install -y nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
+apt-get update
+apt-get install -y nginx
 
-sudo service nginx restart
+echo "Holberton School" > /var/www/html/index.html
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+printf %s "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html/;
+	index index.html index.htm;
+}
+" > /etc/nginx/sites-available/default
+
+service nginx restart
