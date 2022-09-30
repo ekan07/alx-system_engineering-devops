@@ -4,16 +4,13 @@ sudo apt-get -y update
 SUDO apt-get install --no-install-recommends software-properties-common
 SUDO add-apt-repository ppa:vbernat/haproxy-2.6
 SUDO apt-get install haproxy=2.6.\*
-cat <<EOT | sudo tee -a /etc/haproxy/haproxy.cfg
-frontend load_balancer
-    bind *:80
-    mode http
-    default_backend web-backend
-
-backend web-backend
-    balance roundrobin
-    server 18038-web-01 3.238.206.30:80 check
-    server 18038-web-02 3.235.172.240:80 check
-EOT
+sed -i '/errorfile 504/a frontend load_balancer' /etc/haproxy/haproxy.cfg
+sed -i '/frontend load_balancer/a         bind *:80' /etc/haproxy/haproxy.cfg
+sed -i '/bind *:80/a         mode http' /etc/haproxy/haproxy.cfg
+sed -i '/mode http/a         default_backend web-backend' /etc/haproxy/haproxy.cfg
+sed -i '/default_backend web-backend/a backend web-backend' /etc/haproxy/haproxy.cfg
+sed -i '/backend web-backend/a         balance roundrobin' /etc/haproxy/haproxy.cfg
+sed -i '/balance roundrobin/a         server 18038-web-01 3.238.206.30:80 check' /etc/haproxy/haproxy.cfg
+sed -i '/server 18038-web-01 3.238.206.30:80 check/a         server 18038-web-02 3.235.172.240:80 check' /etc/haproxy/haproxy.cfg
 sed -i '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
 sudo service haproxy start
