@@ -4,13 +4,11 @@
 #sudo sed -i "/listen 80 default_server/a rewrite ^/redirect_me return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 # REDIRECT="if (\$request_filename ~ redirect_me) location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}"
 # REDIRECT="location if (\$request_filename ~ redirect_me) ^ {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}"
+# sed  -i '6i location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}'
 sudo apt-get update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" | sudo tee /var/www/html/index.html
-REDIRECT="location if (\$request_filename ~ redirect_me) {\n\t\trewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}"
+REDIRECT="if (\$request_filename ~ redirect_me) {\n\t\trewrite ^ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\t}"
 sudo sed -i "/server_name _;/a $REDIRECT"  /etc/nginx/sites-available/default
 sudo service nginx start
-
-
-# sed  -i '6i location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}'
