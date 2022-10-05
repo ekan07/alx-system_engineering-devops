@@ -2,7 +2,7 @@
 # Configures a new Ubuntu server with a HAproxy load-balancer
 sudo apt-get -y update
 sudo apt-get install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.6
+# sudo add-apt-repository ppa:vbernat/haproxy-2.6
 sudo apt-get install haproxy=2.6.\*
 sudo sed -i '/errorfile 504/a frontend load_balancer' /etc/haproxy/haproxy.cfg
 sudo sed -i '/frontend load_balancer/a         bind *:80' /etc/haproxy/haproxy.cfg
