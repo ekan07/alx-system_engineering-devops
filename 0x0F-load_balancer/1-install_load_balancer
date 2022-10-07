@@ -11,9 +11,10 @@
 # sudo sed -i '/backend web-backend/a         balance roundrobin' /etc/haproxy/haproxy.cfg
 # sudo sed -i '/balance roundrobin/a         server 18038-web-01 3.238.206.30:80 check' /etc/haproxy/haproxy.cfg
 # sudo sed -i '/server 18038-web-01 3.238.206.30:80 check/a         server 18038-web-02 3.235.172.240:80 check' /etc/haproxy/haproxy.cfg
-# sudo sed -i '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
 # sudo service haproxy start
 
-sudo sed -i "$ a \\\nfrontend load_balancer\n\tbind *:80\n\toption forwardfor\n\tdefault_backend web_servers" /etc/haproxy/haproxy.cfg
-sudo sed -i "$ a \\\backend web_servers\n\tbalance roundrobin\n\tserver web1 3.238.206.30:80 check\n\tserver web2 3.235.172.240:80 check" /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a \\\nfrontend load_balancer\n\tbind *:80\n\tmode http\n\toption forwardfor\n\tdefault_backend web_servers\n" /etc/haproxy/haproxy.cfg
+sudo sed -i "$ a \\\backend web_servers\n\tbalance roundrobin\n\tserver 18038-web-01 3.238.206.30:80 check\n\tserver 18038-web-02 3.235.172.240:80 check" /etc/haproxy/haproxy.cfg
+sudo sed -i '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
 sudo service haproxy restart
+
