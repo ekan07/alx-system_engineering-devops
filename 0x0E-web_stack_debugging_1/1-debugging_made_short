@@ -2,4 +2,4 @@
 # Command to make an nginx server listen on port 80, shorter version
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
-sudo pkill -o nginx
+sudo service nginx stop
