@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
 # Configures a new Ubuntu server with a HAproxy load-balancer
+# sudo sed -i -e '$aENABLED=1\n' /etc/default/haproxy 
+# sudo sed -i -e '$a\listen http-in\n\tbind :80\n\t
+# balance roundrobin\n\t
+# server 18038-web-01 3.238.206.30:80 check\n\t
+# server 18038-web-02 3.235.172.240:80 check\n' /etc/haproxy/haproxy.cfg
+# sudo service haproxy restart
+
 sudo apt-get install --no-install-recommends software-properties-common
 sudo apt-get -y update
 sudo apt-get install haproxy
-sudo sed -i '/errorfile 504/a frontend load_balancer' /etc/haproxy/haproxy.cfg
-sudo sed -i '/frontend load_balancer/a         bind *:80' /etc/haproxy/haproxy.cfg
-sudo sed -i '/bind *:80/a         mode http' /etc/haproxy/haproxy.cfg
-sudo sed -i '/mode http/a         default_backend web-backend' /etc/haproxy/haproxy.cfg
-sudo sed -i '/default_backend web-backend/a backend web-backend' /etc/haproxy/haproxy.cfg
-sudo sed -i '/backend web-backend/a         balance roundrobin' /etc/haproxy/haproxy.cfg
-sudo sed -i '/balance roundrobin/a         server 18038-web-01 3.238.206.30:80 check' /etc/haproxy/haproxy.cfg
-sudo sed -i '/server 18038-web-01 3.238.206.30:80 check/a         server 18038-web-02 3.235.172.240:80 check' /etc/haproxy/haproxy.cfg
-sudo sed -i '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
+sudo sed -i -e '/errorfile 504/a frontend load_balancer' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/frontend load_balancer/a         bind *:80' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/bind *:80/a         mode http' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/mode http/a         default_backend web-backend' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/default_backend web-backend/a backend web-backend' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/backend web-backend/a         balance roundrobin' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/balance roundrobin/a         server 18038-web-01 3.238.206.30:80 check' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/server 18038-web-01 3.238.206.30:80 check/a         server 18038-web-02 3.235.172.240:80 check' /etc/haproxy/haproxy.cfg
+sudo sed -i -e '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
 sudo service haproxy start
