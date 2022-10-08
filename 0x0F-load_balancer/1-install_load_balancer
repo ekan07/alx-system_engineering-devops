@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Configures a new Ubuntu server with a HAproxy load-balancer
+
 # sudo apt-get install --no-install-recommends software-properties-common
-# sudo apt-get -y update
-# sudo apt-get install haproxy
 # sudo sed -i '/errorfile 504/a frontend load_balancer' /etc/haproxy/haproxy.cfg
 # sudo sed -i '/frontend load_balancer/a         bind *:80' /etc/haproxy/haproxy.cfg
 # sudo sed -i '/bind *:80/a         mode http' /etc/haproxy/haproxy.cfg
@@ -13,8 +12,11 @@
 # sudo sed -i '/server 18038-web-01 3.238.206.30:80 check/a         server 18038-web-02 3.235.172.240:80 check' /etc/haproxy/haproxy.cfg
 # sudo service haproxy start
 
+sudo apt-get -y update
+sudo apt-get install haproxy
 sudo sed -i "$ a \\\nfrontend load_balancer\n\tbind *:80\n\tmode http\n\toption forwardfor\n\tdefault_backend web_servers\n" /etc/haproxy/haproxy.cfg
 sudo sed -i "$ a \\\backend web_servers\n\tbalance roundrobin\n\tserver 18038-web-01 3.238.206.30:80 check\n\tserver 18038-web-02 3.235.172.240:80 check" /etc/haproxy/haproxy.cfg
 sudo sed -i '/#EXTRAOPTS="-de -m 16"/a ENABLED=1' /etc/default/haproxy
 sudo service haproxy restart
-
+sudo hostnamectl set-hostname 18038-web-01.ekan07.tech
+sudo hostnamectl set-hostname 18038-web-02.ekan07.tech
