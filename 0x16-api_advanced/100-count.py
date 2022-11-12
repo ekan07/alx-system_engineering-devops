@@ -1,34 +1,47 @@
 #!/usr/bin/python3
-'''
-displays top 10 hot posts
-'''
+"""Function to count keywords in all hot posts of a subreddit."""
 import requests
 
 
-def count_words(subreddit, word_list, after=None, result=[]):
-    headers = {'User-agent': 'ekan777'}
-    sub = requests.get('http://www.reddit.com/r/{}/hot.json?after={}'
-                       .format(subreddit, after), headers=headers)
+def count_words(subreddit, word_list, instances={}, after="", count=0):
+    """Prints counts of given keywordst."""
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    headers = {
+        "User-Agent": "ekan777"
+    }
+    params = {
+        "after": after,
+        "count": count,
+        "limit": 100
+    }
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+    try:
+        results = response.json()
+        if response.status_code == 404:
+            raise Exception
+    except Exception:
+        print("")
+        return
 
-    sub = sub.json().get('data')
-    after = sub.get('after')
-    sub = sub.get('children')
-    for obj in sub:
-        title = obj['data'].get('title').split(' ')
-        for words in title:
-            word = words.lower()
-            if word in word_list:
-                result.append(word)
-    if after is not None:
-        count_words(subreddit, word_list, after, result)
-    else:
-        dict_res = {}
+    results = results.get("data")
+    after = results.get("after")
+    count += results.get("dist")
+    for c in results.get("children"):
+        title = c.get("data").get("title").lower().split()
         for word in word_list:
-            dict_res[word] = 0
-        for i in result:
-            dict_res[i] += 1
-        for v in sorted(dict_res.values(), reverse=True):
+            if word.lower() in title:
+                times = len([t for t in title if t.lower() == word.lower()])
+                if instances.get(word.lower()) is None:
+                    instances[word.lower()] = times
+                else:
+                    instances[word.lower()] += times
 
-            for k in dict_res:
-                if dict_res[k] == v and v != 0:
-                    print("{}: {}".format(k, v))
+    if after is None:
+        if len(instances) == 0:
+            print("")
+            return
+        instances = sorted(instances.items(), key=lambda kv: (-kv[1], kv[0]))
+        [print("{}: {}".format(k, v)) for k, v in instances]
+    else:
+        count_words(subreddit, word_list, instances, after, count)
